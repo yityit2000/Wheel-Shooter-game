@@ -3,8 +3,6 @@
     <title>Wheel Shooter</title>
     <script type="text/javascript">
       
-      //--------------------------------------------------------CREATE BALL OBJECTS SO I CAN SHOOT AS MANY AS I WANT
-      
       	var x = 200
       	var y = 320
       	var dx = 2
@@ -12,13 +10,30 @@
       	var time = 10
         var canvas
         var ctx
+        var xpos
+        var ypos
+        var radius
+        var color
+        var choice = "blue"
         var timerId = 0
       	
       function init() {
-      	x = 200
-      	y = 320
+      	if (choice = "blue"){
+      	x = 300
+      	y = 640 - 100 + 20
+      	}
       	timerId = setInterval(shoot,time)
       	}
+      	
+      function ball(xpos,ypos,radius) {
+      if (choice = "blue") {
+      color = "blue";
+      }
+      	ctx.beginPath();
+      	ctx.fillStyle = color;
+        ctx.arc(xpos,ypos,radius,0,Math.PI*2,true);
+        ctx.fill();
+      }
       	
       	
       function shoot(){
@@ -27,17 +42,14 @@
           if (x < 420) {
           ctx.clearRect(0,0,400,640);
           draw()
-      	  ctx.beginPath();
-          ctx.fillStyle = "blue";
-          ctx.arc(x,y,20,0,Math.PI*2,true);
-          ctx.fill();
+      	  ball(x,y,20);
           
-          x = x + dx;
-          y = y + dy;
+          x = x - dx;
+          y = y - dy;
           
           }
           
-          if (x >= 420) {
+          if (x >= 420 || y >= 660 || x <= -25 || y<= -25) {
           clearInterval(timerId)
           }
 
