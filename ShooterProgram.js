@@ -21,16 +21,24 @@ canvas.onclick = function(event) {
         x = 300
         y = 640 - 100 + 20
     }
+    else if (choice = "red") {
+        x = 100
+        y = 640 - 100 + 20
+    }
     var mouseX = event.x;
 	var mouseY = event.y;
+	
+	var slope = (mouseY - y) / (mouseX - x);
 		
-	dx = dy * (mouseX - x) / (mouseY - y);
-	dy = dx * (mouseY - y) / (mouseX - x);
+	dx = dy / slope;
 	
     timerId = setInterval(shoot, time)
 }
 
 function ball(xpos, ypos, radius) {
+    if (choice = "blue") {
+        color = "blue";
+    }
     if (choice = "blue") {
         color = "blue";
     }
